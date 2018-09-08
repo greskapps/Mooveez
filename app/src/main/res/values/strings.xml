@@ -1,0 +1,11 @@
+<resources>
+    <string name="app_name">Mooveez</string>
+    <string name="no_favorites">No favorites have been added!</string>
+    <string name="no_internet">No Internet Connection!</string>
+    <string name="menu_fav_text">Favorites</string>
+    <string name="menu_pop_text">By popularity</string>
+    <string name="menu_top_text">By ratings</string>
+    <string name="trailers">Trailers</string>
+    <string name="tv_test">TextView (test)</string>
+    <string name="Reviews">Reviews</string>
+</resources>
