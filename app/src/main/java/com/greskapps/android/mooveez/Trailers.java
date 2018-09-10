@@ -19,18 +19,18 @@ public class Trailers implements Parcelable {
     };
     private String movieID;
     private String trailerName;
-    private String trailerGenre;
+    private String trailerType;
 
-    public Trailers(String rv_movieId, String rv_trailerName, String rv_trailerGenre) {
+    public Trailers(String rv_movieId, String rv_trailerName, String rv_trailerType) {
         movieID = rv_movieId;
         trailerName = rv_trailerName;
-        trailerGenre = rv_trailerGenre;
+        trailerType = rv_trailerType;
     }
 
     public Trailers(Parcel output) {
         movieID = output.readString();
         trailerName = output.readString();
-        trailerGenre = output.readString();
+        trailerType = output.readString();
     }
 
     public String getMovieID() {
@@ -41,8 +41,8 @@ public class Trailers implements Parcelable {
         return trailerName;
     }
 
-    public String getTrailerGenre() {
-        return trailerGenre;
+    public String getTrailerType() {
+        return trailerType;
     }
 
     @Override
@@ -54,7 +54,7 @@ public class Trailers implements Parcelable {
     public void writeToParcel(Parcel destination, int changes) {
         destination.writeString(movieID);
         destination.writeString(trailerName);
-        destination.writeString(trailerGenre);
+        destination.writeString(trailerType);
     }
 }
 

@@ -58,8 +58,8 @@ public class MainActivity extends AppCompatActivity implements LoaderManager.Loa
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        progress = (ProgressBar) findViewById(R.id.progress);
-        noInternet = (TextView) findViewById(R.id.noInternet);
+        progress = findViewById(R.id.progress);
+        noInternet = findViewById(R.id.noInternet);
         optionsSelected = false;
 
         Bundle sortType = new Bundle();
@@ -75,6 +75,13 @@ public class MainActivity extends AppCompatActivity implements LoaderManager.Loa
                 initiateLoading(SORT_BY_POP);
             }
         }
+
+        mainRecView = findViewById(R.id.thumbs_rv);
+        GridLayoutManager manager = new GridLayoutManager(this, 2);
+        mainRecView.setLayoutManager(manager);
+        mainRecView.setHasFixedSize(true);
+        adapter = new ThumbnailAdapter(thumbnailList, getApplicationContext(), this);
+        mainRecView.setAdapter(adapter);
     }
 
     @Override
@@ -124,7 +131,7 @@ public class MainActivity extends AppCompatActivity implements LoaderManager.Loa
             boolean isConnected = activeNetwork != null &&
                     activeNetwork.isConnectedOrConnecting();
 
-            if (isConnected == true) {
+            if (isConnected) {
                 noInternet.setVisibility(View.INVISIBLE);
                 LoaderManager loaderManager = getSupportLoaderManager();
                 Loader<String> movieLoader = loaderManager.getLoader(LOADER_MOVIE_ID);
@@ -253,7 +260,6 @@ public class MainActivity extends AppCompatActivity implements LoaderManager.Loa
 
     @Override
     public void onMovieItemClick(Thumbnail contentClicked) {
-        //start new activity
         Intent intent = new Intent(getBaseContext(), DetailsActivity.class);
         intent.putExtra("detailParce", contentClicked);
         startActivity(intent);
@@ -269,7 +275,6 @@ public class MainActivity extends AppCompatActivity implements LoaderManager.Loa
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
-        //we reset the position
         mainRecView.getLayoutManager().scrollToPosition(0);
         optionsSelected = true;
 

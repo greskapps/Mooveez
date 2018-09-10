@@ -38,16 +38,17 @@
             android:id="@+id/title_tv"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="@dimen/margin_small"
-            android:layout_marginTop="@dimen/margin_small"
+            android:layout_marginEnd="8dp"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="8dp"
             android:adjustViewBounds="true"
             android:padding="@dimen/padding_small"
             android:scaleType="centerCrop"
             android:textSize="22sp"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toEndOf="@id/thumb_iv"
-            app:layout_constraintTop_toBottomOf="@id/poster_iv"
-            tools:text="@string/tv_test" />
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/thumb_iv"
+            tools:text="title (test)" />
 
         <ImageView
             android:id="@+id/star_favorite"
@@ -56,38 +57,60 @@
             android:layout_marginEnd="@dimen/margin_small"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toTopOf="@id/title_tv"
-            app:srcCompat="@android:drawable/btn_star_big_off" />
+            app:srcCompat="@android:drawable/btn_star_big_off"
+            android:visibility="gone"
+            />
+<!--** REMOVE LINE 60 (TWO LINES UP) FOR PART 2 ** -->
+
+        <TextView
+            android:id="@+id/prompt_for_fav"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/fav_prompt"
+            app:layout_constraintEnd_toEndOf="@+id/star_favorite"
+            app:layout_constraintTop_toBottomOf="@+id/star_favorite"
+            android:visibility="gone"
+            />
+<!--** REMOVE LINE 72 (TWO LINES UP) FOR PART 2 ** -->
 
         <RatingBar
             android:id="@+id/ratings_bar"
             style="@style/Base.Widget.AppCompat.RatingBar.Small"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/margin_small"
+            android:layout_marginBottom="8dp"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="8dp"
             android:isIndicator="true"
             android:numStars="10"
-            app:layout_constraintStart_toStartOf="@id/title_tv"
-            app:layout_constraintTop_toTopOf="@id/release_tv" />
+            app:layout_constraintBottom_toTopOf="@+id/release_tv"
+            app:layout_constraintEnd_toEndOf="@+id/title_tv"
+            app:layout_constraintStart_toStartOf="@+id/title_tv"
+            app:layout_constraintTop_toBottomOf="@+id/title_tv" />
 
         <TextView
             android:id="@+id/release_tv"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/margin_small"
-            app:layout_constraintStart_toStartOf="@id/title_tv"
-            app:layout_constraintTop_toBottomOf="@id/title_tv"
-            tools:text="@string/tv_test" />
+            android:layout_marginEnd="8dp"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="8dp"
+            app:layout_constraintEnd_toEndOf="@+id/ratings_bar"
+            app:layout_constraintStart_toStartOf="@+id/ratings_bar"
+            app:layout_constraintTop_toBottomOf="@+id/ratings_bar"
+            tools:text="release (test)" />
 
         <TextView
             android:id="@+id/plot_tv"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginRight="@dimen/margin_small"
+            android:layout_marginEnd="8dp"
             android:layout_marginStart="@dimen/margin_small"
-            android:layout_marginTop="@dimen/margin_small"
+            android:padding="@dimen/margin_medium"
+            app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/thumb_iv"
-            tools:text="@string/tv_test" />
+            app:layout_constraintTop_toBottomOf="@+id/release_tv"
+            tools:text="plot (test)" />
 
         <TextView
             android:id="@+id/trailer_title_tv"
@@ -96,10 +119,13 @@
             android:layout_marginStart="@dimen/margin_small"
             android:layout_marginTop="@dimen/margin_small"
             android:text="@string/trailers"
-            android:textSize="14sp"
-            android:textStyle="italic"
+            android:textSize="18sp"
+            android:textStyle="bold"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/plot_tv" />
+            app:layout_constraintTop_toBottomOf="@id/plot_tv"
+            android:visibility="gone"
+            />
+        <!--** REMOVE LINE 126 (TWO LINES UP) FOR PART 2 ** -->
 
         <android.support.v7.widget.RecyclerView
             android:id="@+id/trailers_rv"
@@ -108,8 +134,10 @@
             android:layout_marginTop="@dimen/margin_small"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/trailer_title_tv" />
-
+            app:layout_constraintTop_toBottomOf="@id/trailer_title_tv"
+            android:visibility="gone"
+            />
+        <!--** REMOVE LINE 138 (TWO LINES UP) FOR PART 2 ** -->
 
         <TextView
             android:id="@+id/review_title_tv"
@@ -118,10 +146,13 @@
             android:layout_marginStart="@dimen/margin_small"
             android:layout_marginTop="@dimen/margin_small"
             android:text="@string/Reviews"
-            android:textSize="16sp"
+            android:textSize="18sp"
             android:textStyle="bold"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/trailers_rv" />
+            app:layout_constraintTop_toBottomOf="@id/trailers_rv"
+            android:visibility="gone"
+            />
+        <!--** REMOVE LINE 153 (TWO LINES UP) FOR PART 2 ** -->
 
         <android.support.v7.widget.RecyclerView
             android:id="@+id/reviews_rv"
@@ -130,9 +161,11 @@
             android:layout_marginTop="@dimen/margin_small"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/review_title_tv">
-
+            app:layout_constraintTop_toBottomOf="@+id/review_title_tv"
+            android:visibility="gone"
+            >
         </android.support.v7.widget.RecyclerView>
+        <!--** REMOVE LINE 165 (THREE LINES UP) FOR PART 2 ** -->
 
         <ProgressBar
             android:id="@+id/details_progress"

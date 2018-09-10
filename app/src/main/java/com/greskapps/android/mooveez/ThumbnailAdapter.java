@@ -54,7 +54,7 @@ public class ThumbnailAdapter extends RecyclerView.Adapter<ThumbnailAdapter.View
 
         public ViewHolder(final View itemView) {
             super(itemView);
-            imageUrl = (ImageView) itemView.findViewById(R.id.thumb_iv);
+            imageUrl = itemView.findViewById(R.id.movie_item_thumb_iv);
             itemView.setOnClickListener(this);
         }
 
