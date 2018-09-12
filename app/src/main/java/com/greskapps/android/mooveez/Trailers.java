@@ -51,7 +51,7 @@ public class Trailers implements Parcelable {
     }
 
     @Override
-    public void writeToParcel(Parcel destination, int changes) {
+    public void writeToParcel(Parcel destination, int i) {
         destination.writeString(movieID);
         destination.writeString(trailerName);
         destination.writeString(trailerType);

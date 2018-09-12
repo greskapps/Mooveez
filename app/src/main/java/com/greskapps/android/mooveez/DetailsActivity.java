@@ -1,6 +1,5 @@
 package com.greskapps.android.mooveez;
 
-import android.content.ActivityNotFoundException;
 import android.content.ContentValues;
 import android.content.Context;
 import android.content.Intent;
@@ -9,17 +8,14 @@ import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.net.Uri;
 import android.os.Parcelable;
-import android.os.PersistableBundle;
 import android.support.v4.app.LoaderManager;
 import android.support.v4.content.AsyncTaskLoader;
 import android.support.v4.content.Loader;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
-import android.util.Log;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.ProgressBar;
@@ -28,13 +24,7 @@ import android.widget.ScrollView;
 import android.widget.TextView;
 
 import com.squareup.picasso.Picasso;
-import com.greskapps.android.mooveez.ReviewsAdapter;
-import com.greskapps.android.mooveez.Reviews;
-import com.greskapps.android.mooveez.Thumbnail;
-import com.greskapps.android.mooveez.Trailers;
-import com.greskapps.android.mooveez.TrailersAdapter;
-import com.greskapps.android.mooveez.NetUtils;
-// import com.greskapps.android.mooveez.favoritesContract;
+import com.greskapps.android.mooveez.FavContract;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -85,10 +75,10 @@ public class DetailsActivity extends AppCompatActivity implements LoaderManager.
         poster_iv = findViewById(R.id.poster_iv);
         thumb_iv = findViewById(R.id.thumb_iv);
         ratings_bar = findViewById(R.id.ratings_bar);
-//        star_favorite = findViewById(R.id.star_favorite);
+        star_favorite = findViewById(R.id.star_favorite);
         progress = findViewById(R.id.details_progress);
 
-/*        star_favorite.setOnClickListener(new View.OnClickListener() {
+        star_favorite.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 if (mIsFavorite != null) {
@@ -99,7 +89,7 @@ public class DetailsActivity extends AppCompatActivity implements LoaderManager.
                     }
                 }
             }
-        });*/
+        });
 
 
         object = (Thumbnail) getIntent().getParcelableExtra("detailParce");
@@ -120,11 +110,10 @@ public class DetailsActivity extends AppCompatActivity implements LoaderManager.
 
             loadTrailers(movieID, "trailer");
 
-//            checkFavorite();
+            checkFavorite();
         }
     }
 
-    // scroll saving
     @Override
     protected void onSaveInstanceState(Bundle outState) {
         super.onSaveInstanceState(outState);
@@ -295,8 +284,8 @@ public class DetailsActivity extends AppCompatActivity implements LoaderManager.
 // possible fix for erroneous code?
 // http://www.chansek.com/RecyclerView-no-adapter-attached-skipping-layout/
                     reviewRecView = findViewById(R.id.reviews_rv);
-                    LinearLayoutManager manager = new LinearLayoutManager(this);
-                    reviewRecView.setLayoutManager(manager);
+                    LinearLayoutManager revManager = new LinearLayoutManager(this);
+                    reviewRecView.setLayoutManager(revManager);
                     reviewRecView.setHasFixedSize(true);
                     reviewsAdapter = new ReviewsAdapter(reviewList, getApplicationContext(), this);
                     reviewRecView.setAdapter(reviewsAdapter);
@@ -346,21 +335,15 @@ public class DetailsActivity extends AppCompatActivity implements LoaderManager.
 
     @Override
     public void onMovieItemClick(Trailers clicked) {
-        //we play the video
         String youtubeURL = "https://www.youtube.com/watch?v=" + clicked.getMovieID();
 
-        Intent appIntent = new Intent(Intent.ACTION_VIEW, Uri.parse("vnd.youtube:" + clicked.getMovieID()));
-        Intent webIntent = new Intent(Intent.ACTION_VIEW,
+        Intent intent = new Intent(Intent.ACTION_VIEW,
                 Uri.parse("http://www.youtube.com/watch?v=" + clicked.getMovieID()));
+            intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
 
         Context context = getApplicationContext();
-        try {
-            context.startActivity(appIntent);
-
-        } catch (ActivityNotFoundException ex) {
-            context.startActivity(webIntent);
+            context.startActivity(intent);
         }
-    }
 
     @Override
     public void onMovieItemClick(Reviews clicked) {
@@ -377,10 +360,10 @@ public class DetailsActivity extends AppCompatActivity implements LoaderManager.
         String selection;
         String[] selectionArgs = {""};
 
-        selection = favContract.FavoritesEntry.COLUMN_MOVIE_ID + " = ?";
+        selection = FavContract.FavoritesEntry.COLUMN_MOVIE_ID + " = ?";
         selectionArgs[0] = movieID;
 
-        rowDeleted = getContentResolver().delete(favContract.FavoritesEntry.FAVORITES_URI,
+        rowDeleted = getContentResolver().delete(FavContract.FavoritesEntry.FAVORITES_URI,
                 selection,
                 selectionArgs);
 
@@ -390,15 +373,15 @@ public class DetailsActivity extends AppCompatActivity implements LoaderManager.
 
     private void saveFavorite() {
         ContentValues contentValues = new ContentValues();
-        contentValues.put(favContract.FavoritesEntry.COLUMN_MOVIE_ID, object.getmovieId());
-        contentValues.put(favContract.FavoritesEntry.COLUMN_TITLE, object.getTitle());
-        contentValues.put(favContract.FavoritesEntry.COLUMN_DESCRIPTION, object.getDetails());
-        contentValues.put(favContract.FavoritesEntry.COLUMN_URL, object.getUrl());
-        contentValues.put(favContract.FavoritesEntry.COLUMN_WIDE_URL, object.getwideUrl());
-        contentValues.put(favContract.FavoritesEntry.COLUMN_RELEASE_DATE, object.getRelease_date());
-        contentValues.put(favContract.FavoritesEntry.COLUMN_VOTE_AVERAGE, object.getVote_average());
+        contentValues.put(FavContract.FavoritesEntry.COLUMN_MOVIE_ID, object.getmovieId());
+        contentValues.put(FavContract.FavoritesEntry.COLUMN_TITLE, object.getTitle());
+        contentValues.put(FavContract.FavoritesEntry.COLUMN_DESCRIPTION, object.getDetails());
+        contentValues.put(FavContract.FavoritesEntry.COLUMN_URL, object.getUrl());
+        contentValues.put(FavContract.FavoritesEntry.COLUMN_WIDE_URL, object.getwideUrl());
+        contentValues.put(FavContract.FavoritesEntry.COLUMN_RELEASE_DATE, object.getRelease_date());
+        contentValues.put(FavContract.FavoritesEntry.COLUMN_VOTE_AVERAGE, object.getVote_average());
 
-        Uri uri = getContentResolver().insert(favContract.BASE_URI.buildUpon().appendPath(favContract.PATH_FAVORITES).build(), contentValues);
+        Uri uri = getContentResolver().insert(FavContract.BASE_URI.buildUpon().appendPath(FavContract.PATH_FAVORITES).build(), contentValues);
 
         if (uri != null) {
             mIsFavorite = true;
@@ -418,10 +401,10 @@ public class DetailsActivity extends AppCompatActivity implements LoaderManager.
         String selection;
         String[] selectionArgs = {""};
 
-        selection = favContract.FavoritesEntry.COLUMN_MOVIE_ID + " = ?";
+        selection = FavContract.FavoritesEntry.COLUMN_MOVIE_ID + " = ?";
         selectionArgs[0] = movieID;
 
-        Cursor cursor = getApplicationContext().getContentResolver().query(favContract.FavoritesEntry.FAVORITES_URI,
+        Cursor cursor = getApplicationContext().getContentResolver().query(FavContract.FavoritesEntry.FAVORITES_URI,
                 null,
                 selection,
                 selectionArgs,
@@ -437,6 +420,5 @@ public class DetailsActivity extends AppCompatActivity implements LoaderManager.
 
         changeGraphicFavorites();
     }
-
 
 }

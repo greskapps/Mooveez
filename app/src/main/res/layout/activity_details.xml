@@ -54,24 +54,18 @@
             android:id="@+id/star_favorite"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginEnd="@dimen/margin_small"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toTopOf="@id/title_tv"
-            app:srcCompat="@android:drawable/btn_star_big_off"
-            android:visibility="gone"
-            />
-<!--** REMOVE LINE 60 (TWO LINES UP) FOR PART 2 ** -->
+            app:layout_constraintEnd_toEndOf="@+id/prompt_for_fav"
+            app:layout_constraintTop_toBottomOf="@+id/prompt_for_fav"
+            app:srcCompat="@android:drawable/btn_star_big_off" />
 
         <TextView
             android:id="@+id/prompt_for_fav"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginEnd="8dp"
             android:text="@string/fav_prompt"
-            app:layout_constraintEnd_toEndOf="@+id/star_favorite"
-            app:layout_constraintTop_toBottomOf="@+id/star_favorite"
-            android:visibility="gone"
-            />
-<!--** REMOVE LINE 72 (TWO LINES UP) FOR PART 2 ** -->
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="@+id/ratings_bar" />
 
         <RatingBar
             android:id="@+id/ratings_bar"
@@ -122,10 +116,7 @@
             android:textSize="18sp"
             android:textStyle="bold"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/plot_tv"
-            android:visibility="gone"
-            />
-        <!--** REMOVE LINE 126 (TWO LINES UP) FOR PART 2 ** -->
+            app:layout_constraintTop_toBottomOf="@id/plot_tv" />
 
         <android.support.v7.widget.RecyclerView
             android:id="@+id/trailers_rv"
@@ -134,10 +125,7 @@
             android:layout_marginTop="@dimen/margin_small"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/trailer_title_tv"
-            android:visibility="gone"
-            />
-        <!--** REMOVE LINE 138 (TWO LINES UP) FOR PART 2 ** -->
+            app:layout_constraintTop_toBottomOf="@id/trailer_title_tv" />
 
         <TextView
             android:id="@+id/review_title_tv"
@@ -149,10 +137,7 @@
             android:textSize="18sp"
             android:textStyle="bold"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/trailers_rv"
-            android:visibility="gone"
-            />
-        <!--** REMOVE LINE 153 (TWO LINES UP) FOR PART 2 ** -->
+            app:layout_constraintTop_toBottomOf="@id/trailers_rv" />
 
         <android.support.v7.widget.RecyclerView
             android:id="@+id/reviews_rv"
@@ -161,11 +146,8 @@
             android:layout_marginTop="@dimen/margin_small"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/review_title_tv"
-            android:visibility="gone"
-            >
+            app:layout_constraintTop_toBottomOf="@+id/review_title_tv" >
         </android.support.v7.widget.RecyclerView>
-        <!--** REMOVE LINE 165 (THREE LINES UP) FOR PART 2 ** -->
 
         <ProgressBar
             android:id="@+id/details_progress"

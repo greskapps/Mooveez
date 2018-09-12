@@ -3,8 +3,6 @@ package com.greskapps.android.mooveez;
 import android.database.Cursor;
 import android.content.Context;
 
-import com.greskapps.android.mooveez.favContract;
-
 public class DatabaseIntoJSON {
 
     public static String FullDatabaseToJson(Context context) {
@@ -13,7 +11,7 @@ public class DatabaseIntoJSON {
         doWeNeedToDelete = false;
 
         //we load the database in a cursor
-        Cursor cursor = context.getContentResolver().query(favContract.FavoritesEntry.FAVORITES_URI,
+        Cursor cursor = context.getContentResolver().query(FavContract.FavoritesEntry.FAVORITES_URI,
                 null,
                 null,
                 null,
@@ -28,40 +26,40 @@ public class DatabaseIntoJSON {
             while (cursor.moveToNext()) {
                 finalResult += "{";
                 finalResult += "\"vote_average\":";
-                finalResult += cursor.getString(cursor.getColumnIndex(favContract.FavoritesEntry.COLUMN_VOTE_AVERAGE));
+                finalResult += cursor.getString(cursor.getColumnIndex(FavContract.FavoritesEntry.COLUMN_VOTE_AVERAGE));
                 finalResult += ",";
 
                 finalResult += "\"id\":";
-                finalResult += cursor.getString(cursor.getColumnIndex(favContract.FavoritesEntry.COLUMN_MOVIE_ID));
+                finalResult += cursor.getString(cursor.getColumnIndex(FavContract.FavoritesEntry.COLUMN_MOVIE_ID));
                 finalResult += ",";
 
                 finalResult += "\"original_title\":";
                 finalResult += "\"";
-                finalResult += cursor.getString(cursor.getColumnIndex(favContract.FavoritesEntry.COLUMN_TITLE));
+                finalResult += cursor.getString(cursor.getColumnIndex(FavContract.FavoritesEntry.COLUMN_TITLE));
                 finalResult += "\"";
                 finalResult += ",";
 
                 finalResult += "\"poster_path\":";
                 finalResult += "\"";
-                finalResult += cursor.getString(cursor.getColumnIndex(favContract.FavoritesEntry.COLUMN_URL));
+                finalResult += cursor.getString(cursor.getColumnIndex(FavContract.FavoritesEntry.COLUMN_URL));
                 finalResult += "\"";
                 finalResult += ",";
 
                 finalResult += "\"backdrop_path\":";
                 finalResult += "\"";
-                finalResult += cursor.getString(cursor.getColumnIndex(favContract.FavoritesEntry.COLUMN_WIDE_URL));
+                finalResult += cursor.getString(cursor.getColumnIndex(FavContract.FavoritesEntry.COLUMN_WIDE_URL));
                 finalResult += "\"";
                 finalResult += ",";
 
                 finalResult += "\"release_date\":";
                 finalResult += "\"";
-                finalResult += cursor.getString(cursor.getColumnIndex(favContract.FavoritesEntry.COLUMN_RELEASE_DATE));
+                finalResult += cursor.getString(cursor.getColumnIndex(FavContract.FavoritesEntry.COLUMN_RELEASE_DATE));
                 finalResult += "\"";
                 finalResult += ",";
 
                 finalResult += "\"overview\":";
                 finalResult += "\"";
-                finalResult += cursor.getString(cursor.getColumnIndex(favContract.FavoritesEntry.COLUMN_DESCRIPTION));
+                finalResult += cursor.getString(cursor.getColumnIndex(FavContract.FavoritesEntry.COLUMN_DESCRIPTION));
                 finalResult += "\"";
 
                 finalResult += "},";

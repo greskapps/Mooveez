@@ -10,36 +10,38 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="vertical"
-        app:layout_constraintGuide_percent=".25" />
+        app:layout_constraintGuide_percent="0.3" />
 
     <ImageView
         android:id="@+id/play_btn"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_margin="@dimen/margin_small"
-        app:layout_constraintBottom_toBottomOf="@id/trailer_thumbnail_iv"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="@id/trailer_thumbnail_iv"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
         app:srcCompat="@android:drawable/ic_media_play" />
 
     <ImageView
         android:id="@+id/trailer_thumbnail_iv"
         android:layout_width="0dp"
-        android:layout_height="@dimen/margin_xxlarge"
-        android:scaleType="fitStart"
-        app:layout_constraintEnd_toStartOf="@id/trailers_gl"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        android:layout_height="@dimen/margin_large"
+        android:padding="@dimen/margin_medium"
+        android:scaleType="centerInside"
+        app:layout_constraintLeft_toRightOf="@id/trailers_gl"
+        app:layout_constraintTop_toTopOf="@id/trailer_name_tv"
+        android:visibility="gone"/>
 
     <TextView
         android:id="@+id/trailer_name_tv"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="@dimen/margin_small"
-        android:layout_marginTop="@dimen/margin_small"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
         android:textStyle="bold"
-        app:layout_constraintStart_toStartOf="@id/trailers_gl"
+        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
+        android:visibility="gone"
         tools:text="trailer name (test)" />
 
     <TextView
@@ -49,6 +51,17 @@
         android:layout_marginTop="@dimen/margin_small"
         app:layout_constraintStart_toStartOf="@id/trailer_name_tv"
         app:layout_constraintTop_toBottomOf="@id/trailer_name_tv"
-        tools:text="type (test)" />
+        tools:text="type (test)"
+        android:visibility="gone"/>
+
+    <TextView
+        android:id="@+id/trailer_text"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:text="@string/trailer"
+        app:layout_constraintBottom_toTopOf="@+id/play_btn"
+        app:layout_constraintStart_toEndOf="@+id/play_btn"
+        app:layout_constraintTop_toBottomOf="@+id/play_btn" />
 
 </android.support.constraint.ConstraintLayout>

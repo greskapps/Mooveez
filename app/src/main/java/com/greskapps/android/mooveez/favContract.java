@@ -3,7 +3,7 @@ package com.greskapps.android.mooveez;
 import android.net.Uri;
 import android.provider.BaseColumns;
 
-public class favContract {
+public class FavContract {
 
     public static final String AUTHORITY = "com.greskapps.android.mooveez";
 

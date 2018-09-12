@@ -39,7 +39,7 @@ public class ReviewsAdapter extends RecyclerView.Adapter<ReviewsAdapter.ViewHold
         holder.content.setText(thumb.getContent());
         holder.url.setText(thumb.getUrl());
 
-        //here we set the listener if we need one
+        //set the listener if we need one
         //Picasso.get().load("https://image.tmdb.org/t/p/w500"+thumb.getUrl()).into(holder.imageUrl);
     }
 
@@ -48,12 +48,10 @@ public class ReviewsAdapter extends RecyclerView.Adapter<ReviewsAdapter.ViewHold
         return thumbnail_list.size();
     }
 
-    //listener
     public interface movieClickListener {
         void onMovieItemClick(Reviews thumb);
     }
 
-    //the view holder with the contents
     public class ViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
         private TextView title;
         private TextView content;
@@ -61,10 +59,9 @@ public class ReviewsAdapter extends RecyclerView.Adapter<ReviewsAdapter.ViewHold
 
         public ViewHolder(final View itemView) {
             super(itemView);
-            //imageUrl=(ImageView) itemView.findViewById(R.id.thumbnail);
-            title = (TextView) itemView.findViewById(R.id.review_name_tv);
-            content = (TextView) itemView.findViewById(R.id.review_tv);
-            url = (TextView) itemView.findViewById(R.id.review_url_tv);
+            title = itemView.findViewById(R.id.review_name_tv);
+            content = itemView.findViewById(R.id.review_tv);
+            url = itemView.findViewById(R.id.review_url_tv);
             url.setOnClickListener(this);
         }
 
