@@ -9,35 +9,43 @@
         android:id="@+id/review_name_tv"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="@dimen/margin_small"
-        android:layout_marginTop="@dimen/margin_small"
+        android:layout_marginStart="@dimen/padding_small"
+        android:layout_marginTop="@dimen/padding_small"
         android:padding="@dimen/margin_small"
         android:textStyle="bold"
+        tools:text="review name (test)"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="parent"
-        tools:text="@string/tv_test" />
+        app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
         android:id="@+id/review_tv"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="@dimen/margin_small"
-        android:layout_marginTop="@dimen/margin_small"
+        android:layout_marginStart="@dimen/padding_small"
+        android:layout_marginTop="@dimen/padding_small"
         android:padding="@dimen/margin_small"
+        tools:text="Review review blah, blah, blah, blah, blah, blah, blah, blah, blah, blah, blah, blah, blah..."
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/review_name_tv"
-        tools:text="@string/tv_test" />
+        app:layout_constraintTop_toBottomOf="@id/review_name_tv" />
 
     <TextView
         android:id="@+id/review_url_tv"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="@dimen/margin_small"
-        android:layout_marginTop="@dimen/margin_small"
+        android:layout_marginStart="@dimen/padding_small"
+        android:layout_marginTop="@dimen/padding_small"
         android:textStyle="italic"
+        tools:text="review URL (test)"
         app:layout_constraintStart_toStartOf="@id/review_tv"
-        app:layout_constraintTop_toBottomOf="@id/review_tv"
-        tools:text="@string/tv_test" />
+        app:layout_constraintTop_toBottomOf="@id/review_tv" />
 
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="@android:color/darker_gray"
+        app:layout_constraintTop_toBottomOf="@id/review_url_tv"
+        android:layout_marginStart="@dimen/padding_small"
+        android:layout_marginTop="@dimen/padding_small"
+        />
 
 </android.support.constraint.ConstraintLayout>
